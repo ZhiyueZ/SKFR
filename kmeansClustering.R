@@ -84,7 +84,7 @@ sparsekmeans1 <- function(X,class, classes, sparsity) {
     WSSval[k]<-sum(scale(t(tempX),scale=FALSE,center=TRUE)^2)
   }
   TSSval <-sum(scale(t(X), scale = FALSE,center=TRUE)^2)
-  return(list(m1=class,m2=center,WSS=WSSval,TSS=TSSval,selected=importantvec))
+  return(list(m1=class,m2=center,WSS=WSStemp,TSS=TSSval,selected=importantvec))
 }
 # sparse kmeans and feature selection within each class
 sparsekmeans2<- function(X,class, classes, sparsity) {
@@ -136,9 +136,9 @@ sparsekmeans2<- function(X,class, classes, sparsity) {
   }
   WSSval<-array(0,classes)
   for(k in 1:classes){
-    tempIndex <- which(class %in% k)
-    tempX <- X[,tempIndex]
-    WSSval[k]<-sum(scale(t(tempX),scale=FALSE,center=TRUE)^2)
+    tempIndex<-which(class %in% k)
+    tempX<-X[,tempIndex]
+    WSStemp[k]<-sum((tempX-center[,k])^2)
   }
   TSSval <-sum(scale(t(X), scale = FALSE,center=TRUE)^2)
   return(list(m1=class,m2=center,WSS=WSSval,TSS=TSSval,selected=importantvec))
