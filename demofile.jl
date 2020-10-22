@@ -60,7 +60,7 @@ y[ CartesianIndices(y)[missingix]]=missings(Float64, length(missingix))
 ## The first output argument is the cluster labels, and the rest are not of importance in this example.
 (classout3,aa,bb,cc,dd)=sparsekpod(copy(y'),classes,m)
 arisparse3=randindex(classout3, convert(Array{Int64,1},truelabels))
-println("ARI of sparsekpod: ",arisparse1[1])
+println("ARI of sparsekpod: ",arisparse3[1])
 
 
 ## real data  the wine data

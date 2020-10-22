@@ -68,13 +68,11 @@ end
     WSSval=zeros(classes)
     for k=1:classes
         tempIndex=findall(class.==k)
-        tempX=X[:,tempIndex]
+        tempX=X[:,tempIndex].-center[:,k]
         tempX=transpose(tempX)
-        for r=1:size(tempX,2)
-            tempX[:,r]=tempX[:,r].-mean(tempX[:,r])
-        end
         WSSval[k]=sum(tempX.^2)
   end
+
   Xtran=transpose(X)
   for r=1:size(Xtran,2)
       Xtran[:,r]=Xtran[:,r].-mean(Xtran[:,r])
@@ -142,14 +140,11 @@ function sparsekmeans2(X::Matrix{T}, class::Vector{Int}, classes::Int,
       end
     end
   end
-  WSSval=zeros(T,classes)
+  WSSval=zeros(classes)
   for k=1:classes
       tempIndex=findall(class.==k)
-      tempX=X[:,tempIndex]
+      tempX=X[:,tempIndex].-center[:,k]
       tempX=transpose(tempX)
-      for r=1:size(tempX,2)
-          tempX[:,r]=tempX[:,r].-mean(tempX[:,r])
-      end
       WSSval[k]=sum(tempX.^2)
 end
 Xtran=transpose(X)
